@@ -2,10 +2,9 @@ const { ApiResponse } = require("../utils/ApiReponse.js");
 const User = require("../models/user_model.js");
 const jwt = require("jsonwebtoken");
 const z = require("zod");
-
+const bcrypt = require("bcrypt");
 const express = require("express");
 const authRouter = express.Router();
-
 const signinBody = z.object({
   useremail: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
@@ -32,7 +31,9 @@ authRouter.post("/signin", async (req, res) => {
 
   if (signinBody.safeParse(body)) {
     try {
-      if (user.password !== body.password) {
+      const compare = await bcrypt.compare(body.password, user.password);
+
+      if (compare === false) {
         return res.json(new ApiResponse(400, {}, "Invalid Password"));
       }
       const token = await jwt.sign(
@@ -76,6 +77,11 @@ authRouter.post("/signup", async (req, res) => {
 
   if (signupBody.safeParse(body)) {
     try {
+      const salt = 10;
+      const hashedPass = await bcrypt.hash(body.password, salt);
+      body.password = hashedPass;
+      console.log(body);
+
       const user = await User.create({
         ...body,
       });

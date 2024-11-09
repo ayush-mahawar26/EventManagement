@@ -2,18 +2,18 @@ import { jwtDecode } from "jwt-decode";
 import {
   CustomButton,
   LoadingButton,
-} from "../../../component/util_component/CustomButtonComponent";
-import { CustomformatDate } from "../../../utils/Formatdate";
-import { DecodedToken } from "../../../utils/CustomInterfaces";
+} from "../util_component/CustomButtonComponent";
+import { CustomformatDate } from "../../utils/Formatdate";
+import { DecodedToken } from "../../utils/CustomInterfaces";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { baseurl } from "../../../constants";
+import { baseurl } from "../../constants";
 import { useRecoilState } from "recoil";
 import {
   loadingAtom,
   messageAtom,
   openSnackbarAtom,
-} from "../../../atoms/utilsatom";
+} from "../../atoms/utilsatom";
 
 export function UserEventCard({ event }: { event: any }) {
   const [contain, setContain] = useState(false);
@@ -85,6 +85,12 @@ export function UserEventCard({ event }: { event: any }) {
               {CustomformatDate(event.date)}
             </p>
           </div>
+        </div>
+        <div className="flex justify-between px-4 pu-3 pb-2">
+          <p className="text-slate-800 font-medium">Location</p>
+          <p className="text-sm text-slate-500 font-semibold">
+            {event.location}
+          </p>
         </div>
         <div className="flex justify-between px-4 pu-3 pb-2">
           <p className="text-slate-800 font-medium">Participants</p>

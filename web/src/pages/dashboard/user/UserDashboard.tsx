@@ -15,7 +15,7 @@ import { EventCardShimmer } from "../../../component/admin_component/ShimmerEven
 import { jwtDecode } from "jwt-decode";
 import { DecodedToken } from "../../../utils/CustomInterfaces";
 import { UserTopBar } from "../../../component/user_component/UserTopBar";
-import { UserEventCard } from "./Eventusercard";
+import { UserEventCard } from "../../../component/user_component/Eventusercard";
 
 export function UserDashBoard() {
   const [event, setEvent] = useState([]);
