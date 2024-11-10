@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { ReactTyped } from "react-typed";
+import { CustomButton } from "../component/util_component/CustomButtonComponent";
 
 export function LandingPage() {
+  const nav = useNavigate();
+
   return (
     <div className="">
       <LandingPageAppBar />
@@ -14,6 +17,24 @@ export function LandingPage() {
           backSpeed={100}
           loop
         />
+        <div className="flex justify-center items-center  md:invisible">
+          <div className="px-2">
+            <CustomButton
+              onTap={() => {
+                nav("/user/signin", { replace: true });
+              }}
+              title="Sign In"
+            />
+          </div>
+          <div>
+            <CustomButton
+              onTap={() => {
+                nav("/user/signup", { replace: true });
+              }}
+              title="Sign up"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -49,7 +70,7 @@ function LandingPageAppBar() {
         <p className="font-semibold text-3xl flex flex-col items-center justify-center text-slate-200">
           EManage.io
         </p>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center invisible md:visible">
           <div className="px-2">
             <LandingPageButton
               onTap={() => {

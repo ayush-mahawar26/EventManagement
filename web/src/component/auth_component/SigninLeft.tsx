@@ -82,7 +82,7 @@ export function SignInLeft() {
   }
 
   return (
-    <div className="w-[50%]">
+    <div className="md:w-[50%]">
       <h1 className="font-medium text-2xl">Welcome back</h1>
       <p className="text-sec-text py-2">Log in to your account to continue.</p>
       <div className="py-2">
